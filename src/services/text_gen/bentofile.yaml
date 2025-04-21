@@ -1,0 +1,24 @@
+service: "service:LanguageModelService"
+
+include:
+  - "ver1/*.py"
+  - "*.py"
+
+python:
+  packages:
+    - bentoml
+    - pydantic
+  extra_index_url: []
+  requirements_txt: null
+  lock_packages: true
+
+docker:
+  distro: debian
+  python_version: "3.12"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+  env:
+    TT_MODEL_PATH: "/Users/workspace/GitHub/RAG/models/text-transformer"
+    PYTHONUNBUFFERED: "1"
+    PYTHONPATH: "/Users/workspace/GitHub/RAG-LLM"
