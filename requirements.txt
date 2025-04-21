@@ -1,2 +1,10 @@
 ipykernel
 python-dotenv
+bentoml
+grpcio
+grpcio-health-checking
+opentelemetry-instrumentation-grpc
+pymilvus
+transformers
+protobuf
+fastapi
