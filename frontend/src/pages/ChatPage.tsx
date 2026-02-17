@@ -104,7 +104,7 @@ export default function ChatPage() {
     return (
         <div className="flex flex-col h-full">
             {/* Messages */}
-            <ScrollArea className="flex-1 px-4" ref={scrollRef}>
+            <ScrollArea className="flex-1 overflow-scroll scroll px-4" ref={scrollRef}>
                 {messages.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-full min-h-[60vh] text-center space-y-4">
                         <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/10 flex items-center justify-center">

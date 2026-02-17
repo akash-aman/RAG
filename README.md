@@ -1,11 +1,36 @@
 # 🚀 RAG-LLM: Production-Grade Retrieval-Augmented Generation
 
-A full-featured, production-ready **Retrieval-Augmented Generation** system built with FastAPI, Milvus, and LM Studio. Implements advanced RAG techniques including **Hybrid Search**, **HyDE**, **Cross-Encoder Reranking**, **Sub-Query Decomposition**, **Prompt Optimization**, and **Self-RAG**.
+A full-featured **Retrieval-Augmented Generation** system built with FastAPI, Milvus, and LM Studio. Implements advanced RAG techniques including **Hybrid Search**, **HyDE**, **Cross-Encoder Reranking**, **Sub-Query Decomposition**, **Prompt Optimization**, and **Self-RAG**.
+
+> **📚 Learning Project** — This project is built purely for learning purposes. The goal is to mimic production-level architecture and components to understand how RAG systems are implemented behind the scenes in real-world applications — from the layered backend architecture (API → Controller → Services) to the vector search pipeline, cross-encoder reranking, and self-reflection loops.
+
+> **🖥️ Local LLM** — The LLM runs entirely locally via [LM Studio](https://lmstudio.ai/) on a machine with **128GB RAM**, so there are no external API calls or cloud dependencies for inference.
+
+## 🖼️ Screenshots
+
+### Chat Interface
+
+Streaming chat with RAG responses and source attribution
+
+![Chat](frontend/assets/chat.png)
+
+### Document Management
+
+Drag-and-drop upload, document listing with metadata
+
+![Documents](frontend/assets/document.png)
+
+### LM Studio (Local LLM)
+
+Running `selene-1-mini-llama-3.1-8b` model locally
+
+![LM Studio](frontend/assets/lmstudio.png)
 
 ---
 
 ## 📑 Table of Contents
 
+- [Screenshots](#️-screenshots)
 - [Architecture Overview](#-architecture-overview)
 - [RAG Pipeline — Step by Step](#-rag-pipeline--step-by-step)
 - [Folder Structure](#-folder-structure)
@@ -227,7 +252,7 @@ RAG-LLM/
 │   ├── embedding.ipynb           # Embedding experiments
 │   └── vectordb.ipynb            # Vector database experiments
 │
-├── frontend/                     # Frontend app (SolidJS)
+├── frontend/                     # Frontend app (React + Vite + shadcn/ui)
 ├── data/                         # Data directories
 ├── docker-compose.yml            # Full stack: Milvus + Redis + API + Worker
 ├── Dockerfile                    # Multi-stage Docker build
