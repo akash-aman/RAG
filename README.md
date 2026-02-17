@@ -21,18 +21,18 @@ A full-featured, production-ready **Retrieval-Augmented Generation** system buil
 
 ```
 ┌─────────────┐     ┌────────────────────────────────────────┐     ┌──────────┐
-│   Client     │────▶│           FastAPI Application           │────▶│  Milvus  │
-│ (Swagger UI) │     │                                        │     │ Vector DB│
-└─────────────┘     │  ┌───────────────────────────────────┐  │     └──────────┘
-                    │  │        RAG Controller              │  │
-                    │  │                                     │  │     ┌──────────┐
-                    │  │  Query ──▶ HyDE ──▶ Hybrid Search  │  │────▶│  Redis   │
-                    │  │    │                    │           │  │     │ (Celery) │
-                    │  │    ▼                    ▼           │  │     └──────────┘
-                    │  │  Rerank ──▶ Optimize ──▶ LLM Gen   │  │
-                    │  │                          │          │  │     ┌──────────┐
-                    │  │                     Self-RAG Loop   │  │────▶│ LM Studio│
-                    │  └───────────────────────────────────┘  │     │ (LLM)    │
+│   Client    │────▶│           FastAPI Application          │────▶│  Milvus  │
+│ (Swagger UI)│     │                                        │     │ Vector DB│
+└─────────────┘     │  ┌───────────────────────────────────┐ │     └──────────┘
+                    │  │        RAG Controller             │ │
+                    │  │                                   │ │     ┌──────────┐
+                    │  │  Query ──▶ HyDE ──▶ Hybrid Search │ │────▶│  Redis   │
+                    │  │    │                    │         │ │     │ (Celery) │
+                    │  │    ▼                    ▼         │ │     └──────────┘
+                    │  │  Rerank ──▶ Optimize ──▶ LLM Gen  │ │
+                    │  │                          │        │ │     ┌──────────┐
+                    │  │                     Self-RAG Loop │ │────▶│ LM Studio│
+                    │  └───────────────────────────────────┘ │     │ (LLM)    │
                     └────────────────────────────────────────┘     └──────────┘
 ```
 
@@ -64,7 +64,7 @@ User Query
 │  • That answer is embedded into a vector    │
 │  • This vector is used for retrieval        │
 │  • Why? The hypothetical doc is closer in   │
-│    embedding space to real answers than the  │
+│    embedding space to real answers than the │
 │    original question                        │
 └─────────────────────────────────────────────┘
     │
@@ -79,20 +79,20 @@ User Query
 │    • Captures semantic meaning              │
 │                                             │
 │  Sparse Search (BM25):                      │
-│    • Keyword-based term matching             │
+│    • Keyword-based term matching            │
 │    • Captures exact keyword relevance       │
 │                                             │
 │  Fusion:                                    │
 │    • Reciprocal Rank Fusion (RRF)           │
 │    • Merges both ranked lists               │
-│    • RRF(d) = Σ 1/(k + rank(d))            │
+│    • RRF(d) = Σ 1/(k + rank(d))             │
 └─────────────────────────────────────────────┘
     │
     ▼
 ┌─────────────────────────────────────────────┐
 │  Step 3: RERANKING                          │
 │                                             │
-│  • Cross-Encoder: ms-marco-MiniLM-L-6-v2   │
+│  • Cross-Encoder: ms-marco-MiniLM-L-6-v2    │
 │  • Scores each (query, passage) pair        │
 │  • Much more accurate than bi-encoder       │
 │  • Re-orders by true relevance score        │
@@ -116,9 +116,9 @@ User Query
     │
     ▼
 ┌─────────────────────────────────────────────┐
-│  Step 5: LLM GENERATION                    │
+│  Step 5: LLM GENERATION                     │
 │                                             │
-│  • Context + query → LLM (LM Studio)       │
+│  • Context + query → LLM (LM Studio)        │
 │  • System prompt enforces grounding         │
 │  • "Only answer from the provided context"  │
 │  • Supports streaming (SSE)                 │
