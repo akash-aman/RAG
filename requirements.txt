@@ -12,6 +12,7 @@ slowapi
 # ── Auth ─────────────────────────────────────────────────────────
 python-jose[cryptography]
 passlib[bcrypt]
+bcrypt<4.1.0                        # passlib is incompatible with bcrypt>=4.1
 
 # ── LLM & Embeddings ────────────────────────────────────────────
 openai>=1.0
