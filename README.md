@@ -12,7 +12,9 @@ A full-featured **Retrieval-Augmented Generation** system built with FastAPI, Mi
 
 Streaming chat with RAG responses and source attribution
 
-<video src="frontend/assets/demo.mp4" controls autoplay loop muted width="100%"></video>
+https://github.com/user-attachments/assets/f0a866e4-a313-4a41-ba3b-6993a2fa3dc5
+
+
 
 ## 📑 Table of Contents
 
