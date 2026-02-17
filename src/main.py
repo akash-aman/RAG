@@ -131,10 +131,12 @@ A full-featured Retrieval-Augmented Generation API with:
     from src.api.v1.auth import router as auth_router
     from src.api.v1.ingest import router as ingest_router
     from src.api.v1.query import router as query_router
+    from src.api.v1.query_stream import router as query_stream_router
 
     app.include_router(auth_router, prefix="/api/v1")
     app.include_router(ingest_router, prefix="/api/v1")
     app.include_router(query_router, prefix="/api/v1")
+    app.include_router(query_stream_router, prefix="/api/v1")
 
     # ── Health Check ─────────────────────────────────────────────
     @app.get("/health", response_model=HealthResponse, tags=["Health"])

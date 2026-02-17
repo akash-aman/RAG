@@ -71,6 +71,15 @@ class QueryRequest(BaseModel):
     top_k: Optional[int] = Field(default=None, ge=1, le=50)
 
 
+class QueryStreamRequest(BaseModel):
+    """Request schema for the dedicated streaming query endpoint."""
+    query: str = Field(..., min_length=1, max_length=10_000)
+    filters: Dict[str, Any] = Field(default_factory=dict)
+    enable_hyde: Optional[bool] = None
+    enable_reranking: Optional[bool] = None
+    top_k: Optional[int] = Field(default=None, ge=1, le=50)
+
+
 class Source(BaseModel):
     text: str
     source: str = ""
