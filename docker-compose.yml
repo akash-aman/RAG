@@ -1,6 +1,6 @@
-version: '3.5'
 
 services:
+  # ── Milvus Infrastructure ──────────────────────────────────────────
   etcd:
     container_name: milvus-etcd
     image: quay.io/coreos/etcd:v3.5.0
@@ -56,6 +56,57 @@ services:
       - "8000:3000"
     depends_on:
       - "standalone"
+
+  # ── Redis ──────────────────────────────────────────────────────────
+  redis:
+    container_name: rag-redis
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ── RAG API ────────────────────────────────────────────────────────
+  api:
+    container_name: rag-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+      - REDIS_URL=redis://redis:6379/0
+      - LLM_BASE_URL=http://host.docker.internal:1234/v1
+    depends_on:
+      - standalone
+      - redis
+    volumes:
+      - /tmp/rag_uploads:/tmp/rag_uploads
+
+  # ── Celery Worker ──────────────────────────────────────────────────
+  worker:
+    container_name: rag-worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A workers.celery_app worker --loglevel=info --concurrency=2
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+      - REDIS_URL=redis://redis:6379/0
+      - LLM_BASE_URL=http://host.docker.internal:1234/v1
+    depends_on:
+      - standalone
+      - redis
+    volumes:
+      - /tmp/rag_uploads:/tmp/rag_uploads
 
 networks:
   default:
