@@ -1,0 +1,5 @@
+The Milvus vector database is an open-source vector database built to power embedding similarity search and AI applications. 
+It is highly scalable and reliable.
+BentoML is a framework for building reliable, scalable, and cost-efficient AI applications. 
+It allows you to package your models into a standard format and deploy them to any cloud platform.
+RAG stands for Retrieval-Augmented Generation. It combines retrieval of relevant documents with text generation by a Large Language Model.
