@@ -6,31 +6,17 @@ A full-featured **Retrieval-Augmented Generation** system built with FastAPI, Mi
 
 > **🖥️ Local LLM** — The LLM runs entirely locally via [LM Studio](https://lmstudio.ai/) on a machine with **128GB RAM**, so there are no external API calls or cloud dependencies for inference.
 
-## 🖼️ Screenshots
+## 🖼️ Demo
 
 ### Chat Interface
 
 Streaming chat with RAG responses and source attribution
 
-![Chat](frontend/assets/chat.png)
-
-### Document Management
-
-Drag-and-drop upload, document listing with metadata
-
-![Documents](frontend/assets/document.png)
-
-### LM Studio (Local LLM)
-
-Running `selene-1-mini-llama-3.1-8b` model locally
-
-![LM Studio](frontend/assets/lmstudio.png)
-
----
+<video src="frontend/assets/demo.mp4" controls autoplay loop muted width="100%"></video>
 
 ## 📑 Table of Contents
 
-- [Screenshots](#️-screenshots)
+- [Demo](#demo)
 - [Architecture Overview](#-architecture-overview)
 - [RAG Pipeline — Step by Step](#-rag-pipeline--step-by-step)
 - [Folder Structure](#-folder-structure)
@@ -454,3 +440,25 @@ docker-compose up -d rag-api
 ## 📄 License
 
 MIT
+
+## 🖼️ Screenshots
+
+### Chat Interface
+
+Streaming chat with RAG responses and source attribution
+
+![Chat](frontend/assets/chat.png)
+
+### Document Management
+
+Drag-and-drop upload, document listing with metadata
+
+![Documents](frontend/assets/document.png)
+
+### LM Studio (Local LLM)
+
+Running `selene-1-mini-llama-3.1-8b` model locally
+
+![LM Studio](frontend/assets/lmstudio.png)
+
+---
