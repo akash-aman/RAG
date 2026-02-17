@@ -63,6 +63,19 @@ class VectorDBClient:
             self._connected = False
             return False
 
+    def _ensure_connected(self):
+        """Check the Milvus connection is alive; reconnect if not."""
+        try:
+            # Lightweight ping — will throw if connection is dead
+            utility.list_collections()
+        except Exception:
+            logger.info("Milvus connection lost, attempting reconnect...")
+            self.collection = None
+            if not self.connect():
+                raise ConnectionError(
+                    f"Cannot connect to Milvus at {self.host}:{self.port}"
+                )
+
     def disconnect(self):
         try:
             if self.collection:
@@ -83,6 +96,7 @@ class VectorDBClient:
 
     def ensure_collection(self) -> Collection:
         """Get or create the collection with production schema."""
+        self._ensure_connected()
         if self.collection is not None:
             try:
                 self.collection.load()
