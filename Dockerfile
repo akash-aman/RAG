@@ -29,7 +29,7 @@ COPY .env .
 RUN mkdir -p /tmp/rag_uploads
 
 # Expose API port
-EXPOSE 8081
+EXPOSE 8080
 
 # Default: run the FastAPI server
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8081"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
